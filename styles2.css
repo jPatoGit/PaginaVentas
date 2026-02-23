@@ -1,0 +1,806 @@
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.body_menu{
+    min-height: 100vh;
+}
+
+/* ------------------------------------ ESTILOS DE BARRA DE MENU --------------------------------------- */
+
+
+.nav{
+    width: 100%;
+    height: 100%;
+    padding: 10px 0px;
+    opacity: 0.9;
+    background: linear-gradient(to bottom, #48e,98%,transparent);
+}
+
+.header_principal{
+    margin-top: 8px;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.nav__lista{
+    display: flex;
+    gap: 35px;
+    margin-right: 100px;
+    margin-left: 100px;
+    padding: 0px 0px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+}
+
+.nav__link{
+    font-family: "Berlin Sans FB";
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 8px 8px;
+    flex: 1;
+}
+
+.menu--sesion{
+    box-sizing: border-box;
+    align-items: center;
+    margin-left: auto;
+}
+
+.link--sesion{
+    padding: 6px 0px;
+    display: block;
+    background-color: transparent;
+    color: #fff;
+    min-width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    border: solid 1px transparent;
+    box-shadow: 0px 0px 3px 0px #eee;
+}
+
+.link--contenido:hover {
+    background-color: #0a8a;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.link--sesion:hover {
+    background-color: #00a862;
+    color: #fff;
+    border: solid 1px transparent;
+    transform: scale(1.03);
+}
+
+h1 {
+    text-align: center;
+    padding: 2px 0px;
+}
+
+/* ------------------------------------ ESTILOS DE FORM --------------------------------------- */
+
+.img_icono{
+    width: 40px;
+    height: 40px;
+    position:absolute;
+    left: 10px;
+}
+
+
+.form__encabezado{
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__cuerpo{
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.form{
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    min-height: 440px;
+    padding: 10px 10px;
+    margin: auto;
+    box-sizing: border-box;
+    margin-top: 40px;
+    font-family: sans-serif;
+    background-color: transparent;
+    color: #111;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #222;
+}
+
+.form_dato{
+    padding: 15px 10px;
+}
+
+.form_label{
+    font-size: 0.9em;
+}
+
+.input{
+    width: 90%;
+    padding: 10px 4px;
+    margin-top: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    border-bottom: solid 1px #111;
+    border-radius: 5px;
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    accent-color: #0a6;
+}
+
+
+.form_checkbox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form_button{
+    margin-top: 40px;
+
+}
+
+.button{
+    display: block;
+    padding: 8px 15px;
+    border-radius: 8px;
+    margin: auto;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    background-color: #333;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.button:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+
+/*---------------------------------------------- CATALOGO --------------------------------------------*/
+.main_catalogo{
+    background-color: #eee4;
+    border-radius: 5px;
+    padding: 0px 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 5vh;
+}
+
+.nav--catalogo{
+    padding: 5px 0px;
+    width: 100%;
+    margin: 0;
+    flex-wrap: wrap;
+    margin-right: 20px;
+}
+
+section{
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.link_submenu{
+    display: none;
+    margin-right: 4px;
+    padding: 2px;
+    position: fixed;
+    right: 4px;
+    z-index: 9999;
+}
+
+.nav--catalogo.activo{
+    border: none;
+    position: fixed;
+    opacity: 1;
+    width: 80%;
+    left: 9vw;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0px 0px 2px 0px #2222;
+    z-index: 999;
+}
+
+.btn_menu{
+    padding: 4px 8px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    align-items: center;
+    background-color: red;
+    font-weight: bold;
+}
+
+.lista--catalogo{
+    padding: 0px 0px;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    gap: 20px;
+    flex: 1;
+    flex-wrap: wrap;
+    
+}
+
+.link--catalogo{
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    width: 100px;
+    font-family: "Berlin Sans FB";
+    text-decoration: none;
+    color: #111;
+    padding: 10px 0px;
+}
+
+.link--catalogo:hover{
+    background-color:#dddd;
+    color: #111;
+    border-radius: 8px;
+}
+
+/*
+.lista_productos{
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.producto{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 30px;
+    background-color: transparent;
+    border: none;
+    width: 280px;
+    min-height: 370px;
+    border-radius: 8px;
+}
+
+
+
+.link_producto{
+    position: absolute;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.contenedor_imagen{
+    width: 260px;
+    height: 250px;
+    position: relative;
+}
+
+.img_catalogo{
+    border-radius: 8px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+}
+
+.producto_descripcion{
+    box-sizing: border-box;
+    padding: 2px 5px;
+}
+
+h2{
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    margin: 0;
+    padding: 8px 0px;
+}
+
+.texto_descripcion{
+    margin-top: 0;
+    margin-left: 3px;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+strong{
+    margin-left: 3px;
+}
+*/
+
+/* ----------------------------- ESTILOS DE MENU PRINCIPAL ------------------------------------------- */
+
+header, .main_sesionregistrarse, .footer_datos, .main_principal{
+    width: 100%;
+}
+
+.main_principal,.main_contenido, aside, footer{
+    box-sizing: border-box;
+}
+
+.main_principal{
+    display: flex; 
+    flex-grow: 1;
+    max-width: 1024px;
+    height: 200vh;
+    background-color: #eee;
+    gap: 20px;
+}
+
+.main_contenido, .aside_noticias{
+    padding: 20px 20px;
+    background-color: #48e3;
+}
+
+.main_principal aside {
+    flex-grow: 1;
+}
+
+aside{
+    max-width: 25rem;
+}
+
+.footer_datos{
+    margin-top: auto;
+}
+
+.titulo{
+    filter: drop-shadow(0px 0px 15px #f00);
+}
+
+
+
+
+
+
+/* ----------------------------- ADAPTABILIDAD PARA DIFERENTES PLATAFORMAS --------------------------------------- */
+
+
+
+@media (max-width: 480px) {
+    /* ----------- HEADER PRINCIPAL -------------*/
+    .header_principal{
+        position: static;
+    }
+
+    .nav__lista{
+        justify-content: center;
+        align-items: center;
+        padding: 0px 0px;
+        margin: 0;
+        gap: 25px;
+    }  
+    .lista--catalogo{
+        gap: 5px;
+    }
+    .nav__link{
+        margin: 0;
+    }
+    .menu--sesion{
+        margin-left: 0;
+    }
+    .form{
+        max-width: 350px;
+    }
+    h1{
+        font-size: 25px;
+    }
+
+    /* -------------- CATALOGO ------------*/
+    .producto{
+        margin-top:10px;
+    }
+    .main_catalogo{
+        margin-top: 5px;
+    }
+    .lista--catalogo{
+        flex-direction: column;        
+    }
+    .nav--catalogo {
+        display: none;
+    }
+    .nav--catalogo.activo{
+        display: block;
+    }
+    .link_submenu{
+        display: block;
+    }
+    
+}
+
+@media screen and (min-width: 480px) and (max-width: 860px) {
+    .nav__lista{
+        padding: 0px 0px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+.menu-btn {
+    width: 35px;
+    cursor: pointer;
+    margin: 15px;
+}
+
+.menu-btn div {
+    width: 35px;
+    height: 4px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: .4s;
+}
+
+
+
+
+
+
+
+/* ----------------------- TIENDAS ----------------------------------- */
+
+
+
+
+
+
+
+
+/* ----------------------- ANIMACIONES PRACTICA ---------------------------------*/
+
+.contenedor_barra{
+    padding: 6px;
+    background-color: red;
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0px 0px 15px 0px #111;
+    margin-top: 100px;
+}
+
+.barra{
+    padding: 15px;
+    background-color: #00a862;
+    border-radius: 20px;
+    width: 10%;
+    box-sizing: border-box;
+    transition: width 2s;
+
+}
+
+.contenedor_barra:hover .barra{
+    background-color: blue;
+    width: 100%;
+}
+
+.contenedor_boton{
+    margin-top: 50px;
+    margin: auto;
+    width: 200px;
+    background-color: transparent;
+    position: relative;
+    align-items: center;
+}
+
+.boton_menu{
+    display: block;
+    margin: auto;
+    width: 150px;
+    padding: 10px 0px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    transition: color 1s;
+    margin-top: 20px;
+    
+}
+
+.boton_menu::before{
+    content: "";
+    background-color: blue;
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    border-radius: 10px;
+    opacity: 0.5;
+    top: 20px;
+    left: 130px;
+    transition: top 0.7s, left 0.7s;
+}
+
+.boton_menu:hover{
+    color: black;
+}
+
+.boton_menu:hover::before{
+    content: "";
+    background-color: blue;
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    border-radius: 10px;
+    opacity: 0.5;
+    top: -10px;
+    left: -20px;
+
+}
+
+.boton_neon{
+    display: block;
+    color: blue;
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #fff;
+    padding: 20px 0px;
+    width: 200px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+.boton_neon:hover{
+    animation: parpadear 1s linear both infinite;
+}
+
+@keyframes parpadear {
+    0%{
+        box-shadow: none;
+        background-color: #aaa;
+        text-shadow: 0px 0px 15px #48e;
+    }
+    30%{
+        box-shadow: 0px 0px 5px #222,0px 0px 7px #111;
+    }
+    45%{
+        box-shadow: none;
+        background-color: #222;
+        color: #fff;
+        text-shadow: 0px 0px 15px #48e;
+    }
+    60%{
+        box-shadow: 0px 0px 5px #222,0px 0px 7px #111;
+    }
+    85%{
+        box-shadow: none;
+        background-color: #666;
+        text-shadow: 0px 0px 15px #48e;
+    }
+    100%{
+        box-shadow: 0px 0px 5px #222,0px 0px 7px #111;
+    }
+}
+
+.nuevacaja{
+    padding: 20px;
+    background-color: red;
+}
+
+#usuario, #cerrar_sesion{
+    display: none;
+
+}
+
+.logged #usuario,
+.logged #cerrar_sesion{
+    display: block;
+}
+
+.logged .item_prueba{
+    display: none;
+}
+
+
+#link_usuario{
+    padding: 6px 6px;
+    min-width: auto;
+    border: none;
+    box-shadow: none;
+}
+
+.carousel {
+    margin:auto;
+    margin-top: 20px;
+    padding: 20px 0;
+    max-width: 900px;
+    overflow: hidden;
+    display: flex;
+    >*{
+        flex: 0 0 100%;
+    }
+}
+
+.carousel:active .group{
+    animation-play-state: paused;
+}
+
+.card {
+    width: 100%;
+    color: white;
+    border-radius: 24px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    background-color: #00a862;
+}
+
+.card:hover{
+    transform: scale(1.06);
+}
+
+.group {
+    display: flex;
+    gap: 20px;
+    /* Agrega padding a la derecha para crear un espacio entre la última y la primera tarjeta. */
+    padding-right: 20px;
+    will-change: transform;
+    animation: scrolling 10s linear infinite;
+}
+
+
+
+@keyframes scrolling {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.general{
+    width: 100%;
+}
+
+.contenedor_texto{
+    padding: 10px;
+    margin-top: 150px;
+    align-items: center;
+    text-align: center;
+}
+
+.texto_animacion{
+    width: 14ch;
+    font-size: 40px;
+    font-family: sans-serif;
+    overflow: hidden;
+    position: relative;
+    animation: parpadear 3s steps(14) forwards ;
+}
+
+
+
+.texto_animacion::after{
+    content: "";
+    background-color: #111;
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
+.prueba{
+    margin-top: 100px;
+}
+
+.contenedor_animacion{
+    box-sizing: border-box;
+    position: relative;
+    width: 600px;
+    height: 140px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.track{       
+    display: flex;   
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.6s ease;
+}
+
+.estado{
+    width: 90px;
+    height: 90px;
+    background-color: #222a;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+}
+
+.estado2{
+    background-color: red;
+}
+
+.estado3{
+    background-color: #0af;
+}
+
+
+.contenedor_btnslider{
+    position: absolute;
+    right: 0;
+    top: 40px;
+    z-index: 10;
+}
+
+.contenedor_btnslider button {
+    width: 25px;
+    height: 25px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 50%;
+    border: transparent;
+}
+
+
+.contenedor_btnslider button:active{
+    border: 1px solid #0af;
+}
+
+
+@media screen and (max-width: 480px) {
+    .contenedor_animacion{
+        width: 300px;
+        
+    }
+}
+
+
+textarea{
+    width: 500px;
+    height: 100px;
+    margin-top: 20px;
+}
+
+.contimg{
+    width: 400px;
+    height: 400px;
+    background-color: red;
+
+}
+
+#imagen{
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+
+
