@@ -1,29 +1,55 @@
-
 let registro = document.getElementById("form_registro");
-console.log(registro);
-
-let cuentas = ["jose", "carlos", "cancino", "josecarloscancinomamani"];
 
 const letras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
 const numeros = /^[0-9]+$/;
 
+const supabaseURL= "https://hteiloplozzjglvdzerw.supabase.co";
+const supabaseKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZWlsb3Bsb3p6amdsdmR6ZXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MTA2MjMsImV4cCI6MjA4ODM4NjYyM30.lF3sAokCqVj69tLaXZKVhGL5r27ud22iJOxU3wAVV4A";
 
+const client = supabase.createClient(supabaseURL,supabaseKEY  );
 
-function registrarUsuario(){
-    const datos = new FormData(registro);
-    const usuario = datos.get("usuario");
-    const numero = datos.get("celular");
-    if(!letras.test(usuario) || !numeros.test(numero)){
-        alert("No se admiten numero en el Usuario !!!!!!!!!!!")
-    }else{
-        window.location.href = "iniciar_sesion.html";
-        sessionStorage.setItem("nuevoUsuario", usuario);
+async function obtenerUsusarios(){
+    const {data, error} = await client
+        .from("Usuarios")
+        .select("*");
+    if(error){
+        console.log(error);
+        return;
     }
+    console.log(data);
 }
 
+document.addEventListener("DOMContentLoaded",()=>{
+    obtenerUsusarios();
+})
+
+async function registrarUsuario(){
+    const datos = new FormData(registro);
+    const formNombre = datos.get("nombre");
+    const formApellido = datos.get("apellido");
+    const formUsuario = datos.get("usuario");
+    const formPassword = datos.get("password")
+    if(!letras.test(formNombre) && !letras.test(formApellido)){
+        alert("No se admiten numero en el nombre o apellido")
+    }else{
+        const {data, error} = await client
+            .from("Usuarios")
+            .insert([
+                {nombre: formNombre, apellidos: formApellido, usuario: formUsuario, password: formPassword}
+            ]);
+        if(error){
+            console.log(error);
+            return;
+        }
+        console.log("REGISTRO EXITOSO");
+    }
+    
+}
 
 
 registro.addEventListener("submit", (e)=>{
     e.preventDefault();
     registrarUsuario();
 })
+
+

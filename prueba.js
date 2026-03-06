@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function validarSesion(){
     const validado = sessionStorage.getItem("CorreoUsuario");
-    const lista = document.querySelectorAll(".item_prueba")
     const body = document.querySelector("body")
     const nombre = document.querySelector("#link_usuario");
 
@@ -40,24 +39,3 @@ btn.addEventListener("click", () => {
     menu.classList.toggle("activo");
 })
 
-
-const track = document.querySelector(".track");
-
-let position = 0;
-const speed = 0.5; // píxeles por frame
-
-function animar() {
-    position -= speed;
-
-    // cuando el primer elemento sale completamente
-    if (Math.abs(position) >= track.children[0].offsetWidth + 20) {
-        track.appendChild(track.children[0]); // mueve la card al final
-        position = 0;
-    }
-
-    track.style.transform = `translateX(${position}px)`;
-
-    requestAnimationFrame(animar);
-}
-
-animar();

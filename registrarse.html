@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles2.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <title>REGISTRARSE</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <header class="header_principal">
@@ -49,28 +50,28 @@
             </div>   
             <div class="form__cuerpo">
                 <div class="form_dato">
-                    <label class="form_label"> Nombres y Apellidos
-                        <input class="input" type="text" placeholder="Juan Fernando">
+                    <label class="form_label"> Nombres:
+                        <input name="nombre" class="input" type="text" placeholder="Juan Fernando">
                     </label>
                 </div>
                 <div class="form_dato">
-                    <label class="form_label"> Correo Electronico
-                        <input class="input" type="email" placeholder="example@gmail.com" required>
+                    <label class="form_label"> Apellidos:
+                        <input name = "apellido" class="input" type="text" placeholder="Diaz Perez">
                     </label>
                 </div>
                 <div class="form_dato">
-                    <label class="form_label"> Numero de Celular
+                    <label class="form_label"> Numero de Celular:
                         <input name ="celular" class="input" type="text" placeholder="+51 987654321">
                     </label>
                 </div>
                 <div class="form_dato">
-                    <label class="form_label"> Usuario
+                    <label class="form_label"> Usuario:
                         <input name="usuario" class="input" type="text" placeholder="Example....">
                     </label>
                 </div>
                 <div class="form_dato">
-                    <label class="form_label"> Contraseña
-                        <input name="contraseña" class="input" type="text" placeholder="************">
+                    <label class="form_label"> Contraseña:
+                        <input name="password" class="input" type="text" placeholder="************">
                     </label>
                 </div>
         
@@ -83,5 +84,6 @@
     </main>
 
 <script src="registrarse.js"></script>
+<script src="prueba.js"></script>
 </body>
 </html>

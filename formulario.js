@@ -1,37 +1,4 @@
-
-let formulario = document.querySelector(".form");
-
-let contenedor = null;
-
-let cuentas = ["jose", "carlos", "cancino", "josecarloscancinomamani"];
-
-function nuevoUsuario(){
-    const nUsuario = sessionStorage.getItem("nuevoUsuario");
-    cuentas.push(nUsuario);
-    console.log(cuentas);
-    console.log(nUsuario);
-}
-
-
-function validarUsuario(){
-    const datos = new FormData(formulario);
-    const usuario = datos.get("usuario");
-    agregartexto(usuario);
-
-    cuentas.forEach(item => {
-        if (usuario === item){
-            window.location.href = "catalogo.html";
-            sessionStorage.setItem("CorreoUsuario", usuario);
-            console.log("-------------Estas logueado------------------");
-        }
-        else{
-            console.log("----------Credenciales incorrectas-----------")
-        }
-    })
-
-}
-
-
+/*
 function agregartexto(texto) {
 
     if (contenedor == null) {
@@ -50,6 +17,40 @@ function agregartexto(texto) {
     }
 
 }
+*/
+//let contenedor = null;
+let formulario = document.querySelector(".form");
+
+let cuentas = ["jose", "carlos", "cancino", "josecarloscancinomamani"];
+
+const supabaseURL= "https://hteiloplozzjglvdzerw.supabase.co";
+const supabaseKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZWlsb3Bsb3p6amdsdmR6ZXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MTA2MjMsImV4cCI6MjA4ODM4NjYyM30.lF3sAokCqVj69tLaXZKVhGL5r27ud22iJOxU3wAVV4A";
+
+const dataBase = supabase.createClient(supabaseURL,supabaseKEY  );
+
+async function validarUsuario(){
+
+    const {data, error} = await dataBase
+        .from("Usuarios")
+        .select("*");
+
+    if(error){
+        console.log(error);
+        return;
+    }
+    const datos = new FormData(formulario);
+    const formUsuario = datos.get("usuario");
+    const formPassword = datos.get("password");
+    for (const item of data){
+        if (formUsuario === item.usuario && formPassword === item.password){
+            sessionStorage.setItem("CorreoUsuario", formUsuario);
+            window.location.href = "catalogo.html";
+            console.log("----------------- LOGUEADOO --------------------") 
+        }
+    }
+    console.log("---------------- CREDENCIALES INCORRECTAS ---------------------")
+    return;
+}
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -57,7 +58,7 @@ formulario.addEventListener("submit", (e) => {
 })
 
 document.addEventListener("DOMContentLoaded", () =>{
-    nuevoUsuario();
+
 })
 
 

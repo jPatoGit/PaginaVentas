@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles2.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <title>Iniciar Sesion</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <header class="header_principal">
@@ -49,13 +50,13 @@
             </div>   
             <div class="form__cuerpo">
                 <div class="form_dato">
-                    <label class="form_label"> Correo Electronico
-                        <input name="usuario" class="input" type="text" placeholder="Correo o Numero de telefono">
+                    <label class="form_label"> Correo Electronico o Usuario:
+                        <input name="usuario" class="input" type="text" placeholder="Usuario/email" required>
                     </label>
                 </div>
                 <div class="form_dato">
-                    <label class="form_label"> Contraseña
-                        <input name="contraseña" class="input" type="password" placeholder="Password">
+                    <label class="form_label"> Contraseña:
+                        <input name="password" class="input" type="text" placeholder="*************" required>
                     </label>
                 </div>
                 <div class="form_dato form_checkbox"> 
