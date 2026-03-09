@@ -8,15 +8,16 @@ function validarSesion(){
     const validado = sessionStorage.getItem("CorreoUsuario");
     const body = document.querySelector("body")
     const nombre = document.querySelector("#link_usuario");
+    const usuarioID = sessionStorage.getItem("usuarioID");
 
     if (validado){
-        console.log("HOLA LOGUEADOOOOOOOOOO")
+        console.log(`HOLAA LOGUEADOOOOO ${usuarioID}`);
         body.classList.add("logged");     
         nombre.textContent = validado;
     }
     else{
         body.classList.remove("logged");
-        nombre.textContent = "";
+        nombre.textContent = " ";
     }
 }
 
@@ -26,6 +27,7 @@ function cerrarsesion(){
 
         console.log("Sesion Finalizada");
         sessionStorage.removeItem("CorreoUsuario");
+        sessionStorage.removeItem("usuarioID");
         window.location.href = "iniciar_sesion.html";            
     
     })

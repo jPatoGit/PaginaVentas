@@ -6,7 +6,7 @@ const numeros = /^[0-9]+$/;
 const supabaseURL= "https://hteiloplozzjglvdzerw.supabase.co";
 const supabaseKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZWlsb3Bsb3p6amdsdmR6ZXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MTA2MjMsImV4cCI6MjA4ODM4NjYyM30.lF3sAokCqVj69tLaXZKVhGL5r27ud22iJOxU3wAVV4A";
 
-const client = supabase.createClient(supabaseURL,supabaseKEY  );
+const client = supabase.createClient(supabaseURL,supabaseKEY);
 
 async function obtenerUsusarios(){
     const {data, error} = await client
@@ -21,7 +21,11 @@ async function obtenerUsusarios(){
 
 document.addEventListener("DOMContentLoaded",()=>{
     obtenerUsusarios();
+    verImagen();
 })
+
+
+
 
 async function registrarUsuario(){
     const datos = new FormData(registro);
@@ -45,11 +49,32 @@ async function registrarUsuario(){
     }
     
 }
+//https://hteiloplozzjglvdzerw.supabase.co/storage/v1/object/public/Imagenes/prueba1.png
+
+async function verImagen(){
+    const prueba = document.querySelector(".imgprueba")
+    const {data, error} = await client.storage
+        .from("Imagenes")
+        .list("");
+    if(error){
+        console.log(error);
+        return;
+    }
+    
+    data.forEach(img => {
+        const {data,error} = client.storage
+            .from("Imagenes")
+            .getPublicUrl(img.name);
+        console.log(data);
+    });
+}
 
 
 registro.addEventListener("submit", (e)=>{
     e.preventDefault();
     registrarUsuario();
 })
+
+
 
 

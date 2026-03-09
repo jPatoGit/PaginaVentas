@@ -44,6 +44,7 @@ async function validarUsuario(){
     for (const item of data){
         if (formUsuario === item.usuario && formPassword === item.password){
             sessionStorage.setItem("CorreoUsuario", formUsuario);
+            sessionStorage.setItem("usuarioID", item.usuario_id)
             window.location.href = "catalogo.html";
             console.log("----------------- LOGUEADOO --------------------") 
         }

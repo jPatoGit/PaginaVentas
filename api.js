@@ -1,7 +1,8 @@
 
+const supabaseURL= "https://hteiloplozzjglvdzerw.supabase.co";
+const supabaseKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0ZWlsb3Bsb3p6amdsdmR6ZXJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MTA2MjMsImV4cCI6MjA4ODM4NjYyM30.lF3sAokCqVj69tLaXZKVhGL5r27ud22iJOxU3wAVV4A";
 
-
-
+const client = supabase.createClient(supabaseURL,supabaseKEY);
 
 document.addEventListener("DOMContentLoaded",() =>{
 
@@ -71,13 +72,32 @@ function idProducto(){
 function mostrarProducto(producto, id){
     const imagen = document.querySelector(".producto--imagen")
     const titulo = document.querySelector(".titulo--producto");
+    const precio = document.querySelector(".precio");
+    const descripcion = document.querySelector(".descripcion");
     const validado = producto.find(p => p.id === id);
     console.log(validado);
     if(validado){
         titulo.innerText = validado.title;
         imagen.src = validado.image;
+        precio.innerText = `$${validado.price} soles`;
+        descripcion.innerText = validado.description;
     }
-
+    
 }
 
+/*
+async function comprar(){
+    const userID = sessionStorage.getItem("usuarioID");
+    const validado = sessionStorage.getItem("correoUsuario");
+    if(validado){
+        const {data, error} = await client
+        .from("Orders")
+        .insert([
+            {usuario_id: userID, producto_id:, precio:, cantidad:, country:}
+        ]);
+    }
+    
+    
+}
 
+*/

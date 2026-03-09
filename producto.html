@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="styles2.css">
     <link rel="stylesheet" href="catalogo.css">
     <title>TIENDAS</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
+    
 </head>
 <body>
     <header class="header_principal">
@@ -41,9 +43,14 @@
             <div class="box_producto--imagen">
                 <img class="producto--imagen" src="" alt="">
             </div>
-            <div class="box_producto--descripcion">
+            <div class="box_producto--contenido">
                 <h2 class="titulo--producto"></h2>
+                <p class="descripcion"></p>
+                <span class="precio"></span>
             </div>
+        </div>
+        <div>
+            <button class="btn_comprar">COMPRAR</button>
         </div>
     </main>
 <script src="api.js"></script>
