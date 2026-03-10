@@ -8,22 +8,29 @@ document.addEventListener("DOMContentLoaded",() =>{
 
     const contenedor = document.getElementById("contenedor_principal")
     const parametro = new URLSearchParams(window.location.search);
+    const btnCompra = document.querySelector(".btn_comprar");
     const id = Number(parametro.get("id"));
+    const user = sessionStorage.getItem("CorreoUsuario");
     let listaProductos = [];
-
+    console.log(user);
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
         .then(data => {
             listaProductos = data;
             if(id){
                 mostrarProducto(data, id);
+                btnCompra.addEventListener("click",()=>{
+                    comprar(data, id);
+                    alert("PRODUCTO COMPRADOOOO");
+                })
             }
             else{
                 crearTarjeta(data, contenedor);
                 idProducto();
                 imprimir(listaProductos);
+                
             }
-    })  
+    })
 })
 
 function imprimir(listaProductos){
@@ -58,13 +65,15 @@ function crearTarjeta(listaProductos, contenedor){
 
 function idProducto(){
     let producto = document.querySelectorAll(".item_producto");
-    console.log(producto);
+    //console.log(producto);
     producto.forEach(item => {
         item.addEventListener("click",(e) => {
+            console.log(e);
+            console.log("Target", e.target);
+            console.log("currentTarget",e.currentTarget)
+            console.log("Holaaaaaaaaaaaaaaaaaaa");
             let idProducto = e.currentTarget.dataset.id;
             window.location.href = `producto.html?id=${idProducto}`
-            console.log("Target", e.target);
-            console.log("currentTarget",e.currentTarget.dataset.id)
         })
     })
 }
@@ -85,19 +94,69 @@ function mostrarProducto(producto, id){
     
 }
 
-/*
-async function comprar(){
+
+async function comprar(product, producID){
+    console.log("FUNCION DOMPRA EJECUTSDA")
     const userID = sessionStorage.getItem("usuarioID");
-    const validado = sessionStorage.getItem("correoUsuario");
+    const validado = sessionStorage.getItem("CorreoUsuario");
+    const cantidad = document.querySelector(".cantidad");
+    const order = product.find(p => p.id === producID);
+    let checkCompra = false;
+    console.log(typeof order.price)
+    console.log(validado);
     if(validado){
+        checkCompra = true;
         const {data, error} = await client
-        .from("Orders")
-        .insert([
-            {usuario_id: userID, producto_id:, precio:, cantidad:, country:}
-        ]);
+            .from("Orders")
+            .insert([
+                {
+                    usuario_id: userID, 
+                    producto_id: producID, 
+                    precio:order.price, 
+                    cantidad: cantidad.value, 
+                    country: "Peru"}
+            ]);
+        
+        if(error){
+            console.log(error);
+        }
+        if(checkCompra === true){
+            updateStock();
+            console.log("Actualizando stock de producto");
+        }
     }
-    
-    
+    if(validado === null){
+        console.log("NECESITAS LOGUEARTE PARA COMPRAR")
+    }
 }
 
-*/
+async function updateStock() {
+    const cantidad = document.querySelector(".cantidad");
+    const compra = cantidad.value;
+    const parametro = new URLSearchParams(window.location.search);
+    const id = Number(parametro.get("id"));
+    const producto =  await encontradoProducto(id);
+    const {data,error} = await client
+        .from("Productos")
+        .update({stock: producto.stock - compra})
+        .eq("producto_id", id);
+    if(error){
+        console.log(error);
+    }
+    console.log(`Stockk -- ${producto.stock}`);     
+}
+
+
+async function encontradoProducto(id){
+    const {data, error} = await client
+        .from("Productos")
+        .select("*")
+        .eq("producto_id",id)
+        .single();
+    if(error){
+        console.log(error);
+        return;
+    }
+    return data;
+}
+
