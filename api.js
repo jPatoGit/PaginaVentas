@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded",() =>{
     const user = sessionStorage.getItem("CorreoUsuario");
     let listaProductos = [];
     console.log(user);
+    cantidad();
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
         .then(data => {
@@ -21,7 +22,6 @@ document.addEventListener("DOMContentLoaded",() =>{
                 mostrarProducto(data, id);
                 btnCompra.addEventListener("click",()=>{
                     comprar(data, id);
-                    alert("PRODUCTO COMPRADOOOO");
                 })
             }
             else{
@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded",() =>{
                 
             }
     })
+
 })
 
 function imprimir(listaProductos){
@@ -96,7 +97,6 @@ function mostrarProducto(producto, id){
 
 
 async function comprar(product, producID){
-    console.log("FUNCION DOMPRA EJECUTSDA")
     const userID = sessionStorage.getItem("usuarioID");
     const validado = sessionStorage.getItem("CorreoUsuario");
     const cantidad = document.querySelector(".cantidad");
@@ -122,11 +122,13 @@ async function comprar(product, producID){
         }
         if(checkCompra === true){
             updateStock();
+            alert("COMPRA REALIZADAAAAA");
             console.log("Actualizando stock de producto");
         }
     }
     if(validado === null){
-        console.log("NECESITAS LOGUEARTE PARA COMPRAR")
+        alert("Necesitas loguearte para comprar");
+        return;
     }
 }
 
@@ -158,5 +160,20 @@ async function encontradoProducto(id){
         return;
     }
     return data;
+}
+
+function cantidad(){
+    const btnMas = document.querySelector(".btnMas");
+    const btnMenos = document.querySelector(".btnMenos");
+    const cantidad = document.querySelector(".cantidad");
+    btnMas.addEventListener("click",()=>{
+        cantidad.value = Number(cantidad.value) +1;
+    })
+
+    btnMenos.addEventListener("click",()=>{
+        if(cantidad.value > 1){
+            cantidad.value = Number(cantidad.value) - 1;
+        }
+    })
 }
 

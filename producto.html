@@ -47,20 +47,28 @@
     </header>
     <h1>PRODUCTO</h1>
     <main>
-        <div class="box--producto">
-            <div class="box_producto--imagen">
-                <img class="producto--imagen" src="" alt="">
+        <div class="box_principal">
+            <div class="box--producto">
+                <div class="box_producto--imagen">
+                    <img class="producto--imagen" src="" alt="">
+                </div>
+                
             </div>
-            <div class="box_producto--contenido">
-                <h2 class="titulo--producto"></h2>
-                <p class="descripcion"></p>
-                <span class="precio"></span>
+            <div class="box--compra">
+                <div class="box_producto--contenido">
+                    <h2 class="titulo--producto"></h2>
+                    <p class="descripcion"></p>
+                    <span class="precio"></span>
+                </div> 
+                <button class="btn_comprar">AGREGAR AL CARRITO</button>
+                <div class="box--compra--cantidad">
+                    <button class="btn--cantidad btnMenos">-</button>
+                    <input class="cantidad" type="number" value="1">
+                    <button class="btn--cantidad btnMas">+</button>
+                </div>
+                
             </div>
-        </div>
-        <div class="box--compra"> 
-            <button class="btn_comprar">COMPRAR</button>
-            <input class="cantidad" type="number" value="1" min="1" max="10">
-        </div>
+        </div>    
     </main>
 <script src="api.js"></script>
 <script src="prueba.js"></script>
