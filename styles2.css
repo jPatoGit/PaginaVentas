@@ -32,7 +32,7 @@ body{
 .nav__lista{
     display: flex;
     gap: 35px;
-    margin-right: 100px;
+    margin-right: 40px;
     margin-left: 100px;
     padding: 0px 0px;
     list-style: none;
@@ -49,12 +49,14 @@ body{
     display: block;
     padding: 8px 8px;
     flex: 1;
+    
 }
 
 .menu--sesion{
     box-sizing: border-box;
     align-items: center;
     margin-left: auto;
+    position: relative;
 }
 
 .link--sesion{
@@ -85,6 +87,27 @@ body{
 h1 {
     text-align: center;
     padding: 2px 0px;
+}
+
+.icon--carrito{
+    box-shadow: none;
+    padding: 6px 0px;
+    min-width: 40px;
+}
+
+
+.icon--person{
+    display: none;
+}
+
+.menu--sesion:hover::before{
+    content: "person";
+    font-family: "Material Symbols Outlined";
+    position: absolute;
+    color: #eee;
+    font-size: 30px;
+    left: -30px;
+    top: -2px;
 }
 
 /* ------------------------------------ ESTILOS DE FORM --------------------------------------- */

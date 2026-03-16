@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded",() =>{
     const user = sessionStorage.getItem("CorreoUsuario");
     let listaProductos = [];
     console.log(user);
-    cantidad();
+
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
         .then(data => {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded",() =>{
                 
             }
     })
-
+    cantidad();
 })
 
 function imprimir(listaProductos){
