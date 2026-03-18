@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="catalogo.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <title>Iniciar Sesion</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-    <header class="header_principal">
+    <header class="header_principal header_catalogo">
         <nav class="nav">
             <ul class="nav__lista">
                 <li class="nav__item">
@@ -30,9 +31,14 @@
                 <li class="nav__item menu--sesion ">
                     <a href="iniciar_sesion.html" class="nav__link link--sesion">Iniciar Sesion</a>
                 </li>
-                
-                <li class="nav__item " >
+                <li class="nav__item item_prueba" >
                     <a href="registrarse.html" class="nav__link link--sesion">Registrarse</a>
+                </li>
+                <li class="nav__item menu--sesion" id="usuario"  >
+                    <a href="" class="nav__link link--sesion" id="link_usuario">Usuario</a>
+                </li>
+                <li class="nav__item" id="cerrar_sesion">
+                    <a href="iniciar_sesion.html" class="nav__link link--sesion">Cerrar Sesion</a>
                 </li>
                 <li class="nav__item item_prueba" >
                     <a href="carrito.html" class="nav__link link--sesion icon--carrito"><span class="material-symbols-outlined">shopping_cart</span></a>
@@ -40,6 +46,23 @@
             </ul>
         </nav>
     </header>
-    <H1>CARRRITTTOOOO</H1>
+    <main>
+        <h1>Carrito de Compras</h1>
+        <div class="car_container">
+            <div  class="car_container--imagen">
+                <img src="" alt="">
+            </div>
+            <div class="car_container--descripcion">
+                <h2>Titulo</h2>
+                <span>Precio</span>
+                <p>Cantidad Unds</p>
+            </div>
+        </div>
+        <div class="car_container_compra">
+            <button>COMPRAR</button>
+        </div>
+    </main>
+<script src="api.js"></script>
+<script src="prueba.js"></script>
 </body>
 </html>
