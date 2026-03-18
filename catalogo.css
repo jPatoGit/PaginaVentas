@@ -128,7 +128,7 @@ h2{
     margin-top: 10px;
 }
 
-.btn_comprar{
+.btn_carrito{
     margin-top: 10px;
     padding: 10px 10px;
     border-radius: 10px;
@@ -140,14 +140,14 @@ h2{
     font-size: 1.4rem;
 }
 
-.btn_comprar:hover{
+.btn_carrito:hover{
     background-color: #0a6;
     box-shadow: 0 0 5px 0 #48e;
     color: #fff;
     transform: scale(1.01);
 }
 
-.btn_comprar:active{
+.btn_carrito:active{
     background-color: #ddd;
     color: #222;
 }

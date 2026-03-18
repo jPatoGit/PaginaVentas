@@ -20,9 +20,6 @@ document.addEventListener("DOMContentLoaded",() =>{
             listaProductos = data;
             if(id){
                 mostrarProducto(data, id);
-                btnCompra.addEventListener("click",()=>{
-                    comprar(data, id);
-                })
             }
             else{
                 crearTarjeta(data, contenedor);
@@ -96,59 +93,6 @@ function mostrarProducto(producto, id){
 }
 
 
-async function comprar(product, producID){
-    const userID = sessionStorage.getItem("usuarioID");
-    const validado = sessionStorage.getItem("CorreoUsuario");
-    const cantidad = document.querySelector(".cantidad");
-    const order = product.find(p => p.id === producID);
-    let checkCompra = false;
-    console.log(typeof order.price)
-    console.log(validado);
-    if(validado){
-        checkCompra = true;
-        const {data, error} = await client
-            .from("Orders")
-            .insert([
-                {
-                    usuario_id: userID, 
-                    producto_id: producID, 
-                    precio:order.price, 
-                    cantidad: cantidad.value, 
-                    country: "Peru"}
-            ]);
-        
-        if(error){
-            console.log(error);
-        }
-        if(checkCompra === true){
-            updateStock();
-            alert("COMPRA REALIZADAAAAA");
-            console.log("Actualizando stock de producto");
-        }
-    }
-    if(validado === null){
-        alert("Necesitas loguearte para comprar");
-        return;
-    }
-}
-
-async function updateStock() {
-    const cantidad = document.querySelector(".cantidad");
-    const compra = cantidad.value;
-    const parametro = new URLSearchParams(window.location.search);
-    const id = Number(parametro.get("id"));
-    const producto =  await encontradoProducto(id);
-    const {data,error} = await client
-        .from("Productos")
-        .update({stock: producto.stock - compra})
-        .eq("producto_id", id);
-    if(error){
-        console.log(error);
-    }
-    console.log(`Stockk -- ${producto.stock}`);     
-}
-
-
 async function encontradoProducto(id){
     const {data, error} = await client
         .from("Productos")
@@ -176,4 +120,5 @@ function cantidad(){
         }
     })
 }
+
 

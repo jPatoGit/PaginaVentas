@@ -33,11 +33,11 @@ function cerrarsesion(){
     })
 }
 
-
+/*
 const btn = document.getElementById("boton_menu");
 
 btn.addEventListener("click", () => {
     const menu = document.querySelector(".nav--catalogo");
     menu.classList.toggle("activo");
 })
-
+*/
