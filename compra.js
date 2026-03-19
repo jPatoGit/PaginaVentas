@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded",() =>{
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
         .then(data => {
-                btnCarrito.addEventListener("click",()=>{
-                    agregarCarrito();
+                console.log(data);
+                btnCompra.addEventListener("click",()=>{
+                    alert("Comprando")
                 })  
     })
 })
@@ -100,7 +101,7 @@ function agregarCarrito(){
         console.log(listaCarrito);
     }
     else{
-        console.log("Se Crea uno nuevo")
+        console.log("Se agrega uno nuevo")
         listaCarrito.push({
             id: id,
             cantidad: Number(cantidad.value)
@@ -109,3 +110,36 @@ function agregarCarrito(){
     }
     localStorage.setItem("carrito", JSON.stringify(listaCarrito));
 }
+
+function mostrarCarrito(dataCarrito){
+    let data = encontradoProducto(dataCarrito.id)
+    return`
+        <div class="car_container">
+            <div  class="car_container--imagen">
+                <img src="${data.imagen}" alt="">
+            </div>
+            <div class="car_container--descripcion">
+                <h2>${data.title}</h2>
+                <span>${data.price}</span>
+                <p>${cantidad} unidades</p>
+            </div>
+        </div>
+    `
+}
+/*
+async function insertarData(dataProductos){
+        const {data, error} = await client
+            .from("Productos")
+            .insert([{
+                nombre: dataProductos.title,
+                precio: dataProductos.price,
+                descripcion: dataProductos.description,
+                imagen: dataProductos.image
+            }
+        ])
+    if(error){
+        console.log(error);
+    }   
+    console.log("Data INGRESADAAAAAAAAA")
+}
+*/
