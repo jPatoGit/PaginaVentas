@@ -4,40 +4,69 @@ const supabaseKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const client = supabase.createClient(supabaseURL,supabaseKEY);
 
-document.addEventListener("DOMContentLoaded",() =>{
+document.addEventListener("DOMContentLoaded",async () =>{
 
     const contenedor = document.getElementById("contenedor_principal")
     const parametro = new URLSearchParams(window.location.search);
     const btnCompra = document.querySelector(".btn_comprar");
     const id = Number(parametro.get("id"));
     const user = sessionStorage.getItem("CorreoUsuario");
-    let listaProductos = [];
-    console.log(user);
+    if(id){
+        mostrarProducto(id);
+        cantidad();
+    }else{
+        await crearTarjeta(contenedor);
+        idProducto();
+    }
+    console.log(user); 
 
+    const img = document.querySelector(".producto--imagen");
+
+    img.addEventListener("mousemove", (e) => {
+        const rect = img.getBoundingClientRect();
+
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        img.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+        img.style.transform = "scale(2)";
+    });
+
+    img.addEventListener("mouseleave", () => {
+        img.style.transform = "scale(1)";
+    });
+    /*
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
         .then(data => {
             listaProductos = data;
             if(id){
-                mostrarProducto(data, id);
+                mostrarProducto(id);
             }
             else{
-                crearTarjeta(data, contenedor);
+                crearTarjeta(contenedor);
                 idProducto();
                 imprimir(listaProductos);
                 
             }
-    })
-    cantidad();
+    })*/
 })
 
-function imprimir(listaProductos){
-    console.log(listaProductos);
+
+async function getProductos() {
+    const {data, error} = await client
+        .from("Productos")
+        .select("*")
+        .order("producto_id",{ascending: true});
+    if(error){
+        console.log(error);
+    }
+    return data;
 }
 
-function crearTarjeta(listaProductos, contenedor){
-    
-    for(let i = 0; i < listaProductos.length; i++){
+async function crearTarjeta(contenedor){
+    const db = await getProductos();
+    for(let i = 0; i < db.length; i++){
         let boxProducto = document.createElement("div");
         let boxImagen = document.createElement("div");
         let boxDescripcion = document.createElement("div");
@@ -46,11 +75,11 @@ function crearTarjeta(listaProductos, contenedor){
         boxImagen.classList.add("box_imagen");
         boxProducto.classList.add("item_producto");
         boxProducto.classList.add("producto");
-        boxProducto.dataset.id = listaProductos[i].id;
+        boxProducto.dataset.id = db[i].producto_id;
         imagen.classList.add("img--catalogo");
         boxDescripcion.classList.add("box_descripcion");    
-        imagen.src = listaProductos[i].image;
-        titulo.innerText = listaProductos[i].title;
+        imagen.src = db[i].imagen;
+        titulo.innerText = db[i].nombre;
         contenedor.appendChild(boxProducto);
         boxProducto.appendChild(boxImagen);
         boxProducto.appendChild(boxDescripcion);
@@ -63,7 +92,6 @@ function crearTarjeta(listaProductos, contenedor){
 
 function idProducto(){
     let producto = document.querySelectorAll(".item_producto");
-    //console.log(producto);
     producto.forEach(item => {
         item.addEventListener("click",(e) => {
             console.log(e);
@@ -76,18 +104,20 @@ function idProducto(){
     })
 }
 
-function mostrarProducto(producto, id){
+async function mostrarProducto(id){
+    const db = await getProductos();
     const imagen = document.querySelector(".producto--imagen")
     const titulo = document.querySelector(".titulo--producto");
     const precio = document.querySelector(".precio");
     const descripcion = document.querySelector(".descripcion");
-    const validado = producto.find(p => p.id === id);
+    const validado = db.find(p => p.producto_id === id);
+    console.log("----------- validadooo --------------");
     console.log(validado);
     if(validado){
-        titulo.innerText = validado.title;
-        imagen.src = validado.image;
-        precio.innerText = `$${validado.price} soles`;
-        descripcion.innerText = validado.description;
+        titulo.innerText = validado.nombre;
+        imagen.src = validado.imagen;
+        precio.innerText = `$${validado.precio} soles`;
+        descripcion.innerText = validado.descripcion;
     }
     
 }
@@ -120,5 +150,7 @@ function cantidad(){
         }
     })
 }
+
+
 
 

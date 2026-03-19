@@ -85,12 +85,15 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
+
 
 .producto--imagen{
     width: 100%;
     height: 100%;
     border-radius: 20px;
+    transition: transform 0.5s ease;
 }
 
 .box_producto--contenido{
@@ -186,7 +189,12 @@ input[type="number"]::-webkit-inner-spin-button{
     width: 150px;
     height: 117.219px;
     border-radius: 10px;
-    box-shadow: 0 0 5px 0 #fa4;
+
+}
+
+.car_container--imagen img{
+    width: 100%;
+    height: 100%;
 }
 
 .car_container--descripcion{

@@ -10,14 +10,22 @@ document.addEventListener("DOMContentLoaded",() =>{
     const btnCarrito = document.querySelector(".btn_carrito");
     const id = Number(parametro.get("id"));
     console.log(`IDDDD ${id}`);
+    if(id){
+        btnCarrito.addEventListener("click",()=>{
+        agregarCarrito()
+    }) 
+    }else{
+        mostrarCarrito();
+    } 
+    /*
     fetch("https://fakestoreapi.com/products")
         .then(res => res.json())
         .then(data => {
                 console.log(data);
-                btnCompra.addEventListener("click",()=>{
-                    alert("Comprando")
-                })  
-    })
+                /*btnCompra.addEventListener("click",()=>{
+                    mostrarProductos();
+                }) 
+    })*/
 })
 
 
@@ -111,21 +119,35 @@ function agregarCarrito(){
     localStorage.setItem("carrito", JSON.stringify(listaCarrito));
 }
 
-function mostrarCarrito(dataCarrito){
-    let data = encontradoProducto(dataCarrito.id)
-    return`
-        <div class="car_container">
-            <div  class="car_container--imagen">
-                <img src="${data.imagen}" alt="">
-            </div>
-            <div class="car_container--descripcion">
-                <h2>${data.title}</h2>
-                <span>${data.price}</span>
-                <p>${cantidad} unidades</p>
-            </div>
-        </div>
-    `
+async function mostrarCarrito(){
+    let carrito = JSON.parse(localStorage.getItem("carrito"));
+    const contenedorCarrito = document.querySelector(".car_globalcontainer");
+    console.log("----- MOSTRANDO PRODCUTOS EN CARRITO ---------");
+    console.log(carrito);
+    const db = await getProductos();
+    let contenido = ``; 
+    carrito.forEach(item => {
+        let data = db.find(p => p.producto_id === item.id);
+        let contenidoHTML = `
+                        <div class="car_container">
+                            <div  class="car_container--imagen">
+                                <img src="${data.imagen}" alt="">
+                            </div>
+                            <div class="car_container--descripcion">
+                                <h2>${data.nombre}</h2>
+                                <span>${data.precio}</span>
+                                <p>${item.cantidad} unidades</p>
+                            </div>
+                        </div>
+                    ` 
+        contenido = contenido + contenidoHTML;
+    });
+    console.log(contenido)
+    contenedorCarrito.innerHTML = contenido;
 }
+
+
+
 /*
 async function insertarData(dataProductos){
         const {data, error} = await client
