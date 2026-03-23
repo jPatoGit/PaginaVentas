@@ -3,11 +3,12 @@ const supabaseKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const client = supabase.createClient(supabaseURL,supabaseKEY);
 */
-document.addEventListener("DOMContentLoaded",() =>{
+document.addEventListener("DOMContentLoaded",async () =>{
 
     const parametro = new URLSearchParams(window.location.search);
     const btnCompra = document.querySelector(".btn_comprar");
     const btnCarrito = document.querySelector(".btn_carrito");
+    const botones = document.querySelectorAll(".btn_eliminarCarrito")
     const id = Number(parametro.get("id"));
     console.log(`IDDDD ${id}`);
     if(id){
@@ -15,7 +16,12 @@ document.addEventListener("DOMContentLoaded",() =>{
         agregarCarrito()
     }) 
     }else{
-        mostrarCarrito();
+        await mostrarCarrito();
+        document.addEventListener("click",(e) => {
+            if(e.target.closest(".btn_eliminarCarrito")){
+                elminarCarrito();
+            }
+        })
     } 
     /*
     fetch("https://fakestoreapi.com/products")
@@ -135,8 +141,9 @@ async function mostrarCarrito(){
                             </div>
                             <div class="car_container--descripcion">
                                 <h2>${data.nombre}</h2>
-                                <span>${data.precio}</span>
-                                <p>${item.cantidad} unidades</p>
+                                <p>Cantidad: ${item.cantidad}</p>
+                                <p>Precio Total: S/ ${Number(item.cantidad)*data.precio}</p>
+                                <button class="btn_eliminarCarrito"><span class="material-symbols-outlined">delete</span></button>
                             </div>
                         </div>
                     ` 
@@ -144,6 +151,14 @@ async function mostrarCarrito(){
     });
     console.log(contenido)
     contenedorCarrito.innerHTML = contenido;
+}
+
+function elminarCarrito(){
+    const data = JSON.parse(localStorage.getItem("carrito"))
+    data.forEach(item => {
+        alert(`Eliminando item con id N° ${item.id} del carrito`);
+        return;
+    })
 }
 
 
