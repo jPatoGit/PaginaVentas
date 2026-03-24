@@ -6,7 +6,7 @@ const client = supabase.createClient(supabaseURL,supabaseKEY);
 
 document.addEventListener("DOMContentLoaded",async () =>{
 
-    const contenedor = document.getElementById("contenedor_principal")
+    const contenedorCatalogo = document.getElementById("contenedor_principal")
     const parametro = new URLSearchParams(window.location.search);
     const btnCompra = document.querySelector(".btn_comprar");
     const id = Number(parametro.get("id"));
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded",async () =>{
         mostrarProducto(id);
         cantidad();
     }else{
-        await crearTarjeta(contenedor);
+        await crearTarjeta(contenedorCatalogo);
         idProducto();
     }
     console.log(user); 

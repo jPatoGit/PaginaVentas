@@ -3,12 +3,11 @@ const supabaseKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 const client = supabase.createClient(supabaseURL,supabaseKEY);
 */
-document.addEventListener("DOMContentLoaded",async () =>{
+document.addEventListener("DOMContentLoaded",async (e) =>{
 
     const parametro = new URLSearchParams(window.location.search);
     const btnCompra = document.querySelector(".btn_comprar");
     const btnCarrito = document.querySelector(".btn_carrito");
-    const botones = document.querySelectorAll(".btn_eliminarCarrito")
     const id = Number(parametro.get("id"));
     console.log(`IDDDD ${id}`);
     if(id){
@@ -18,9 +17,15 @@ document.addEventListener("DOMContentLoaded",async () =>{
     }else{
         await mostrarCarrito();
         document.addEventListener("click",(e) => {
+            const contenedorCarrito = e.target.closest(".car_container");
+            const idCarrito = Number(contenedorCarrito.dataset.id);
             if(e.target.closest(".btn_eliminarCarrito")){
-                elminarCarrito();
+                elminarCarrito(idCarrito);
+                mostrarCarrito();
             }
+        })
+        btnCompra.addEventListener("click",()=>{
+            comprar();
         })
     } 
     /*
@@ -128,14 +133,15 @@ function agregarCarrito(){
 async function mostrarCarrito(){
     let carrito = JSON.parse(localStorage.getItem("carrito"));
     const contenedorCarrito = document.querySelector(".car_globalcontainer");
+    const btnComprar = document.querySelector(".btn_comprar")
     console.log("----- MOSTRANDO PRODCUTOS EN CARRITO ---------");
     console.log(carrito);
     const db = await getProductos();
     let contenido = ``; 
     carrito.forEach(item => {
-        let data = db.find(p => p.producto_id === item.id);
-        let contenidoHTML = `
-                        <div class="car_container">
+            let data = db.find(p => p.producto_id === item.id);
+            let contenidoHTML = `
+                        <div class="car_container" data-id="${data.producto_id}">
                             <div  class="car_container--imagen">
                                 <img src="${data.imagen}" alt="">
                             </div>
@@ -143,22 +149,31 @@ async function mostrarCarrito(){
                                 <h2>${data.nombre}</h2>
                                 <p>Cantidad: ${item.cantidad}</p>
                                 <p>Precio Total: S/ ${Number(item.cantidad)*data.precio}</p>
-                                <button class="btn_eliminarCarrito"><span class="material-symbols-outlined">delete</span></button>
                             </div>
+                            <button class="btn_eliminarCarrito"><span class="material-symbols-outlined">delete</span></button>
                         </div>
-                    ` 
+                    `       
         contenido = contenido + contenidoHTML;
     });
-    console.log(contenido)
-    contenedorCarrito.innerHTML = contenido;
+    if(carrito.length > 0){       
+        contenedorCarrito.innerHTML = contenido;
+        btnComprar.disabled = false;
+    }
+    else{
+        btnComprar.disabled = true;
+        contenedorCarrito.innerHTML = "Tu carrito no tiene PRODUCTOS"
+    } 
 }
 
-function elminarCarrito(){
+function elminarCarrito(itemCarrito){
     const data = JSON.parse(localStorage.getItem("carrito"))
-    data.forEach(item => {
-        alert(`Eliminando item con id N° ${item.id} del carrito`);
-        return;
-    })
+    const validado = data.find( c => c.id === itemCarrito);
+    let nuevaData = data.filter( c => c.id !== itemCarrito);
+    if(validado){
+        console.log(nuevaData);
+        localStorage.setItem("carrito", JSON.stringify(nuevaData));
+        alert(`Se va a elimar el item con id N° ${itemCarrito}`);
+    }
 }
 
 
