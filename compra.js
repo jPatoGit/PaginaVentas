@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded",async (e) =>{
     }else{
         await mostrarCarrito();
         document.addEventListener("click",(e) => {
+            if(!e.target.closest(".btn_eliminarCarrito")) return;
+            
             const contenedorCarrito = e.target.closest(".car_container");
             const idCarrito = Number(contenedorCarrito.dataset.id);
-            if(e.target.closest(".btn_eliminarCarrito")){
-                elminarCarrito(idCarrito);
-                mostrarCarrito();
-            }
+            elminarCarrito(idCarrito);
+            mostrarCarrito();
         })
         btnCompra.addEventListener("click",()=>{
             comprar();
@@ -131,13 +131,14 @@ function agregarCarrito(){
 }
 
 async function mostrarCarrito(){
-    let carrito = JSON.parse(localStorage.getItem("carrito"));
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const contenedorCarrito = document.querySelector(".car_globalcontainer");
-    const btnComprar = document.querySelector(".btn_comprar")
+    const contenedorPrincipal = document.querySelector(".car_container_general");
+    const btnComprar = document.querySelector(".btn_comprar");
     console.log("----- MOSTRANDO PRODCUTOS EN CARRITO ---------");
     console.log(carrito);
     const db = await getProductos();
-    let contenido = ``; 
+    let contenido = ``;
     carrito.forEach(item => {
             let data = db.find(p => p.producto_id === item.id);
             let contenidoHTML = `
@@ -155,6 +156,9 @@ async function mostrarCarrito(){
                     `       
         contenido = contenido + contenidoHTML;
     });
+    if(contenedorPrincipal){
+        contenedorPrincipal.classList.remove("car_oculto");
+    }
     if(carrito.length > 0){       
         contenedorCarrito.innerHTML = contenido;
         btnComprar.disabled = false;
@@ -166,7 +170,7 @@ async function mostrarCarrito(){
 }
 
 function elminarCarrito(itemCarrito){
-    const data = JSON.parse(localStorage.getItem("carrito"))
+    const data = JSON.parse(localStorage.getItem("carrito"));
     const validado = data.find( c => c.id === itemCarrito);
     let nuevaData = data.filter( c => c.id !== itemCarrito);
     if(validado){

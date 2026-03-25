@@ -179,11 +179,13 @@ input[type="number"]::-webkit-inner-spin-button{
 .car_container_general{
     display: flex;
     flex-direction: column;
+    
 }
 
 .car_oculto{
     display: none;
 }
+
 .car_container{
     min-width: 1000px;
     min-height: 150px;
