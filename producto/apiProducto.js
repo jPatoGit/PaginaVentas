@@ -13,7 +13,7 @@ export async function getProductos() {
     return data;
 }
 
-async function idProducto(idP) {
+export async function selectProducto(idP) {
     const {data,error} = await client
         .from("Productos")
         .select("*")

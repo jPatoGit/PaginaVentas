@@ -6,7 +6,7 @@ const client = supabase.createClient(supabaseURL,supabaseKEY);
 
 document.addEventListener("DOMContentLoaded",async () =>{
 
-    const contenedorCatalogo = document.getElementById("contenedor_principal")
+    const contenedorCatalogo = document.getElementById("contenedor_catalogo")
     const parametro = new URLSearchParams(window.location.search);
     const btnCompra = document.querySelector(".btn_comprar");
     const id = Number(parametro.get("id"));
@@ -145,7 +145,7 @@ function cantidad(){
     })
 
     btnMenos.addEventListener("click",()=>{
-        if(cantidad.value > 1){
+        if(Number(cantidad.value) > 1){
             cantidad.value = Number(cantidad.value) - 1;
         }
     })
