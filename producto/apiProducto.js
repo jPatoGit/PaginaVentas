@@ -6,6 +6,7 @@ export async function getProductos() {
     const {data,error} = await client
         .from("Productos")
         .select("*")
+        .order("producto_id",{ascending:true});
     if(error){
         console.log(error);
         return [];
@@ -14,6 +15,7 @@ export async function getProductos() {
 }
 
 export async function selectProducto(idP) {
+    console.time("API");
     const {data,error} = await client
         .from("Productos")
         .select("*")
@@ -22,7 +24,9 @@ export async function selectProducto(idP) {
     if(error){
         console.log(error);
     }
+    console.timeEnd("API");
     return data;
+
 }
 
 

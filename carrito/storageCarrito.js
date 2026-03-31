@@ -1,6 +1,6 @@
 // -------------------------- LOCAL STORAGE CARRITO (ESTADOS) ----------------------------
 
-const store = {
+export const store = {
     get carrito(){
         return JSON.parse( localStorage.getItem("carrito")) || [];
     },

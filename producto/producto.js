@@ -3,10 +3,11 @@
 import { obtenerProductos, selectPro } from "./serviceProducto.js";
 
 export async function mostrarCatalogo(){
-    const contenedor = document.getElementById("contenedor_principal");
+    const contenedor = document.getElementById("contenedor_catalogo");
     const db = await obtenerProductos();
+    console.log(db);
     let content = ``;
-    for( let i=0; i<=db.length; i ++){
+    for( let i = 0; i < db.length; i ++){
         let contenido = `
                         <div class="item_producto producto" data-id="${db[i].producto_id}">
                             <div class="box_imagen">
@@ -19,8 +20,6 @@ export async function mostrarCatalogo(){
         content = content + contenido;
     }
     contenedor.innerHTML = content;
-    console.log("------Mostrando productos de UI-----");
-    console.log( await obtenerProductos());
 }
 
 export function idProducto(){

@@ -1,6 +1,6 @@
 // --------------------- BASE DE DATOS ---------------------
 
-import { client } from "../supabaseClient";
+import { client } from "../supabaseClient.js";
 
 export async function getCarrito() {
     const {data,error} = await client
@@ -11,7 +11,7 @@ export async function getCarrito() {
     }
 }
 
-export async function carritoCompra(lista) {
+export async function checkCompra(lista) {
     const {data,error} = await client
         .from("Orders")
         .insert(lista);
