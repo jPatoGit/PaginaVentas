@@ -391,10 +391,6 @@ header, .main_sesionregistrarse, .footer_datos, .main_principal{
     flex-grow: 1;
 }
 
-aside{
-    max-width: 25rem;
-}
-
 .footer_datos{
     margin-top: auto;
 }

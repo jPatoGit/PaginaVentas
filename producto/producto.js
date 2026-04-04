@@ -15,6 +15,8 @@ export async function mostrarCatalogo(){
                             </div>
                             <div class="box_descripcion">
                                 <h2>${db[i].nombre}</h2>
+                                <p>${db[i].descripcion}</p>
+                                <span>S/${db[i].precio}</span>
                             </div>
                         </div>`
         content = content + contenido;

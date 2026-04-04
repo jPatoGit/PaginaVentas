@@ -1,3 +1,5 @@
+/* ----------------  CATALOGO  --------------------*/
+
 * {
     box-sizing: border-box;
 }
@@ -36,6 +38,24 @@
 
 .box_descripcion{
     padding: 8px;
+}
+
+.box_descripcion p{
+    font-size: 12px;
+    font-family: inherit;
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.box_descripcion span{
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: bold;
 }
 
 .producto:hover{
