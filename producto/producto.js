@@ -1,6 +1,7 @@
 // ----------------- RENDERIZACION DE PRODUCTOS ------------------
 
 import { obtenerProductos, selectPro } from "./serviceProducto.js";
+import { idURL } from "../utils/url.js";
 
 export async function mostrarCatalogo(){
     const contenedor = document.getElementById("contenedor_catalogo");
@@ -35,8 +36,7 @@ export function idProducto(){
 }
 
 export async function mostrarProducto(){
-    const parametro = new URLSearchParams(window.location.search);
-    const id = Number(parametro.get("id"));
+    const id = idURL();
     const validado = await selectPro(id);
     const imagen = document.querySelector(".producto--imagen")
     const titulo = document.querySelector(".titulo--producto");
@@ -50,7 +50,7 @@ export async function mostrarProducto(){
     }
 }
 
-export function cantidad(){
+export function quantity(){
     const btnMas = document.querySelector(".btnMas");
     const btnMenos = document.querySelector(".btnMenos");
     const cantidad = document.querySelector(".cantidad");

@@ -10,3 +10,5 @@ export async function selectPro(id) {
     return await selectProducto(id);
 }
 
+
+

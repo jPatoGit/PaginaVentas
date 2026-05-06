@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
-<body>
+<body id="page_login">
     <header class="header_principal">
         <nav class="nav">
             <ul class="nav__lista">
@@ -55,12 +55,12 @@
             <div class="form__cuerpo">
                 <div class="form_dato">
                     <label class="form_label"> Correo Electronico o Usuario:
-                        <input name="usuario" class="input" type="text" placeholder="Usuario/email" required>
+                        <input name="usuario" class="input" type="text" placeholder="Usuario/email" >
                     </label>
                 </div>
                 <div class="form_dato">
                     <label class="form_label"> Contraseña:
-                        <input name="password" class="input" type="text" placeholder="*************" required>
+                        <input name="password" class="input" type="text" placeholder="*************" >
                     </label>
                 </div>
                 <div class="form_dato form_checkbox"> 
@@ -69,13 +69,13 @@
                     </label>
                 </div>
                 <div class="form_button">
-                        <button class="button" type="submit" >Iniciar Sesion</button> 
+                        <button class="button" type="button" >Iniciar Sesion</button> 
                 </div>
                 
             </div>                                                                          
         </form>
     </main>
         
-<script src="formulario.js"></script> 
+<script type="module" src="main.js"></script> 
 </body>
 </html>

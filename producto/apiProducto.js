@@ -29,7 +29,6 @@ export async function selectProducto(idP) {
 
 }
 
-
 export async function updateStock(lista, id, compra) {
     const {data, error} = await client
         .from("Productos")

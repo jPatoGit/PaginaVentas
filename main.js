@@ -1,6 +1,7 @@
 // ------------------- MAIN --------------------------
-import { añadirCarrito } from "./carrito/carrito.js";
-import { mostrarCatalogo, idProducto, cantidad, mostrarProducto } from "./producto/producto.js";
+import { añadirCarrito, renderCarrito, deleteCar} from "./carrito/carrito.js";
+import { mostrarCatalogo, idProducto, quantity, mostrarProducto } from "./producto/producto.js";
+import { mostrarUsuarios } from "./auth/login.js";
 
 document.addEventListener("DOMContentLoaded",async ()=>{
     const page = document.body.id;
@@ -9,9 +10,15 @@ document.addEventListener("DOMContentLoaded",async ()=>{
         idProducto();
     }
     if(page === "page_producto"){
-        mostrarProducto();
+        await mostrarProducto();
         añadirCarrito();
-        cantidad();
+        quantity();
     }
-    
+    if(page === "page_carrito"){
+        renderCarrito();
+        deleteCar();
+    }
+    if(page === "page_login"){
+        mostrarUsuarios();
+    }
 })
