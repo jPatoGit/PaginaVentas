@@ -1,7 +1,7 @@
 // ----------------------- RENDERIZADO DE CARRITO ---------------------
 
 import { crearCarrito, elminarCarrito } from "./serviceCarrito.js";
-import { store } from "./storageCarrito.js";
+import { store } from "../storage/storageCarrito.js";
 import { obtenerProductos } from "../producto/serviceProducto.js";
 
 export function añadirCarrito(){

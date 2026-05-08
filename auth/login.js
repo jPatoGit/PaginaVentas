@@ -1,12 +1,20 @@
 // ------------------ RENDER LOGIN -----------------
+import { userstore } from "../storage/storageUsuario.js";
 
-import { obtenerUsuarios } from "./serviceUser.js";
+export function mostrarUsuario(){
+    const validado = sessionStorage.getItem("CorreoUsuario");
+    const body = document.querySelector("body")
+    const nombre = document.querySelector("#link_usuario");
+    const usuarioID = userstore.userID;
 
-export async function mostrarUsuarios(){
-    let lista = await obtenerUsuarios();
-    const btn = document.querySelector(".button");
-    btn.addEventListener("click",()=>{
-        console.log("--------- USUSARIOS ----------")
-        console.log(lista);
-    })
+    if (validado){
+        console.log(`HOLAA LOGUEADOOOOO ${usuarioID}`);
+        body.classList.add("logged");     
+        nombre.textContent = validado;
+    }
+    else{
+        body.classList.remove("logged");
+        nombre.textContent = " ";
+    }
+
 }

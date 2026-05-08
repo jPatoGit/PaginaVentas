@@ -1,7 +1,7 @@
 // ---------------------- LOGICA CARRITO ----------------------
 
 import { getCarrito, checkCompra, insertCarrito, deleteCarrito } from "./apiCarrito.js";
-import { store } from "./storageCarrito.js";
+import { store } from "../storage/storageCarrito.js";
 import { selectProducto } from "../producto/apiProducto.js";
 import { idURL } from "../utils/url.js";
 
