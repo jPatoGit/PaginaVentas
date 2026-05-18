@@ -15,6 +15,7 @@ export async function logueo(){
     const password = datos.get("password");
     for(const dato of db){
         if(usuario === dato.usuario && password === dato.password){
+            console.log(dato.usuario)
             userstore.user = dato.usuario;
             userstore.userID = dato.usuario_id;
             window.location.href = "catalogo.html";
@@ -24,6 +25,7 @@ export async function logueo(){
     console.log("------------ CREDENCIALES INCORRECTAS --------------");
     return;
 }
+
 
 
 

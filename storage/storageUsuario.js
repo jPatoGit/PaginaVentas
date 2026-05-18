@@ -1,7 +1,7 @@
 
 export const userstore = {
     get user(){
-        return sessionStorage.getItem("Usuario") || " ";
+        return sessionStorage.getItem("Usuario");
     },
     get userID(){
         return sessionStorage.getItem("usuario_id");

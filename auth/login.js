@@ -2,10 +2,12 @@
 import { userstore } from "../storage/storageUsuario.js";
 
 export function mostrarUsuario(){
-    const validado = sessionStorage.getItem("CorreoUsuario");
+    const validado = sessionStorage.getItem("Usuario");
     const body = document.querySelector("body")
     const nombre = document.querySelector("#link_usuario");
     const usuarioID = userstore.userID;
+
+    if(!nombre) return;
 
     if (validado){
         console.log(`HOLAA LOGUEADOOOOO ${usuarioID}`);
@@ -14,7 +16,7 @@ export function mostrarUsuario(){
     }
     else{
         body.classList.remove("logged");
-        nombre.textContent = " ";
+        nombre.textContent = "";
     }
 
 }

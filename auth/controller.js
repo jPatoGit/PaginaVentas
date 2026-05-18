@@ -25,5 +25,4 @@ export function cerrarsesion(){
 
 export function validarLogueo(){
     mostrarUsuario();
-    cerrarsesion();
 }

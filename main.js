@@ -1,8 +1,9 @@
 // ------------------- MAIN --------------------------
 import { añadirCarrito, renderCarrito, deleteCar} from "./carrito/carrito.js";
 import { mostrarCatalogo, idProducto, quantity, mostrarProducto } from "./producto/producto.js";
-import { iniciarSesion, validarLogueo } from "./auth/controller.js";
+import { cerrarsesion, iniciarSesion, validarLogueo } from "./auth/controller.js";
 import { logueo } from "./auth/serviceUser.js";
+import { mostrarUsuario } from "./auth/login.js";
 
 document.addEventListener("DOMContentLoaded",async ()=>{
     const page = document.body.id;
@@ -23,5 +24,6 @@ document.addEventListener("DOMContentLoaded",async ()=>{
     if(page === "page_login"){
         iniciarSesion();
     }
-    
+    mostrarUsuario();
+    cerrarsesion();
 })
