@@ -7,12 +7,8 @@ export async function obtenerUsuarios() {
     return await getUsers();
 }
 
-export async function logueo(){
+export async function logueo(usuario, password){
     const db = await getUsers();
-    const formulario = document.querySelector(".form");
-    const datos = new FormData(formulario);
-    const usuario = datos.get("usuario");
-    const password = datos.get("password");
     for(const dato of db){
         if(usuario === dato.usuario && password === dato.password){
             console.log(dato.usuario)
@@ -24,6 +20,15 @@ export async function logueo(){
     }
     console.log("------------ CREDENCIALES INCORRECTAS --------------");
     return;
+}
+
+export function logout(){
+    userstore.removeUser();
+    console.log("Sesion Finalizada")
+}
+
+export async function nuevoUsuario(data){
+    await insertUser(data);
 }
 
 
