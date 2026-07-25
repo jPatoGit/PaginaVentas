@@ -1,6 +1,6 @@
 // -------------- FUNCIONES --------------------
 
-import { getUsers, selectUser, insertUser } from "./apiuser.js";
+import { getUsers, selectUser } from "./apiuser.js";
 import { userstore } from "../storage/storageUsuario.js";
 
 export async function obtenerUsuarios() {
@@ -27,9 +27,6 @@ export function logout(){
     console.log("Sesion Finalizada")
 }
 
-export async function nuevoUsuario(data){
-    await insertUser(data);
-}
 
 
 

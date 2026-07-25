@@ -1,6 +1,6 @@
 // ------------------ CONTROLADOR DE FLUJO -----------------------
 
-import { logout, logueo, nuevoUsuario } from "./serviceUser.js";
+import { logout, logueo } from "./serviceUser.js";
 import { registerUser } from "./register.js";
 
 export function iniciarSesion(){
@@ -45,8 +45,7 @@ export async function registrar(){
             correo: correo
         }
         console.log(dataUser);
-        await nuevoUsuario(dataUser);
-        console.log("REGISTRO EXITOSO!!!!!")
+        await registerUser(dataUser);
         window.location.href="iniciar_sesion.html"; 
     });
 }
